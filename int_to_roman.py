@@ -1,6 +1,3 @@
-import math
-
-
 class Solution:
     roman_letters_extended = (
         (1000, 'M'),
