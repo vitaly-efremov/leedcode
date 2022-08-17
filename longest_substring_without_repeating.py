@@ -16,7 +16,7 @@ class SimpleSolution:
         return max_len
 
 
-class Solution:
+class Solution1:
     def lengthOfLongestSubstring(self, s: str) -> int:
         max_len = 0
         s_len = len(s)
@@ -34,6 +34,31 @@ class Solution:
                 visited_chars[char] = end
             max_len = max(max_len, len(visited_chars))
             start += 1
+        return max_len
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_len = 0
+        s_len = len(s)
+        start = end = 0
+        visited_chars = dict()
+        while end < s_len:
+            if s_len - start <= max_len:
+                break
+
+            char = s[end]
+            if char in visited_chars:
+                new_start = visited_chars[char]
+                max_len = max(max_len, len(visited_chars))
+                for i in range(start, new_start):
+                    del visited_chars[s[i]]
+                start = new_start + 1
+
+            visited_chars[char] = end
+            end += 1
+
+        max_len = max(max_len, len(visited_chars))
         return max_len
 
 
