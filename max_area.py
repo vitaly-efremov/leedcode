@@ -30,18 +30,15 @@ class Solution:
         end_index = bars_count - 1
         while start_index <= end_index:
             width = end_index - start_index
-            min_height = height[end_index]
             if height[start_index] < height[end_index]:
-                min_height = height[start_index]
+                area = height[start_index] * width
                 start_index += 1
             else:
+                area = height[end_index] * width
                 end_index -= 1
 
-            current_area = min_height * width
-            if current_area > max_area:
-                max_area = current_area
+            max_area = max(area, max_area)
 
-        print(max_area)
         return max_area
 
 
